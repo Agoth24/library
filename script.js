@@ -1,11 +1,9 @@
 // Array for Book objects to be stored
 const myLibrary = [];
-const deleteSVG = (
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+const deleteSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <title>trash-can</title>
     <path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z" fill="currentColor"/>
-  </svg>`
-);
+  </svg>`;
 // Grab the Book Form element
 const bookForm = document.querySelector("form.book-form");
 //Listen to the Submit button
@@ -49,10 +47,11 @@ function displayLibrary() {
     const bookCard = document.createElement("div");
     bookCard.classList.add("card");
     const cardText = document.createElement("div");
-    
+    cardText.classList.add("card-text");
+
     const deleteSection = document.createElement("div");
-    deleteSection.classList.add("delete-section")
-    
+    deleteSection.classList.add("delete-section");
+
     const titlePara = document.createElement("p");
     titlePara.textContent = `Title: ${book.title}`;
     const authorPara = document.createElement("p");
@@ -63,25 +62,34 @@ function displayLibrary() {
     readPara.textContent = `Completed: ${book.haveRead ? "Yes" : "No"}`;
 
     const deleteButton = document.createElement("button");
-    deleteButton.classList.add("delete-button")
-    deleteButton.textContent = 'Delete';
+    deleteButton.classList.add("delete-button");
+    deleteButton.textContent = "Delete";
+
+    const readButton = document.createElement("button");
+    readButton.classList.add("read-button");
+    readButton.textContent = "Change Status";
 
     cardText.appendChild(titlePara);
     cardText.appendChild(authorPara);
     cardText.appendChild(pagesPara);
     cardText.appendChild(readPara);
-    
+
     deleteButton.addEventListener("click", () => {
-        deleteBookById(book.id);
-        displayLibrary();
+      deleteBookById(book.id);
+      displayLibrary();
     });
+
+    readButton.addEventListener("click", () => {
+        book.toggleRead();
+        displayLibrary();
+    })
     bookCard.appendChild(cardText);
     bookCard.appendChild(deleteSection);
-    
+
     deleteSection.appendChild(deleteButton);
-    
+    deleteSection.appendChild(readButton);
     library.appendChild(bookCard);
-    document.querySelector("#title").focus()
+    document.querySelector("#title").focus();
   });
 }
 

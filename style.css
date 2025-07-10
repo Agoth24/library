@@ -64,7 +64,9 @@ button.new-book {
   transition: 0.2s ease;
 }
 
-button.new-book:hover, button.delete-button:hover {
+button.new-book:hover,
+button.delete-button:hover,
+button.read-button:hover {
   cursor: pointer;
   background-color: #6c757d;
   color: var(--color-gray-100);
@@ -86,7 +88,7 @@ button.new-book:hover, button.delete-button:hover {
   gap: 2rem;
   transition: all 0.3s ease;
   font-size: 1.25rem;
-  align-items: center;
+  align-items: start;
 }
 
 /* CARDS */
@@ -96,7 +98,7 @@ button.new-book:hover, button.delete-button:hover {
   background-color: var(--light-navy);
   color: var(--color-gray-300);
   border-radius: 0 1rem 1rem 0;
-  padding: 1rem 2rem;
+  padding: 1rem ;
   border-left: 1rem solid var(--custom-orange);
   transition: all 0.2s ease;
 }
@@ -109,21 +111,44 @@ button.new-book:hover, button.delete-button:hover {
   font-weight: 600;
   font-size: 1.125rem;
 }
+.card-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    justify-content: space-between;
+
+}
+.card-text p {
+    margin: 0;
+}
 
 .delete-section {
-  justify-content: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
 }
 .delete-button {
-    all: unset;
-    background-color: var(--custom-orange);
-    padding: 0.5em 1em;
-    color: white;
-    font-size: 1em;
-    font-weight: 600;
-    border-radius: 2rem;
-    cursor: pointer;
+  all: unset;
+  background-color: var(--custom-orange);
+  padding: 0.5em 1em;
+  color: white;
+  font-size: 1em;
+  font-weight: 600;
+  border-radius: 2rem;
+  cursor: pointer;
 }
 
+.read-button {
+  all: unset;
+  background-color: var(--custom-orange);
+  padding: 0.5em 1em;
+  color: white;
+  font-size: 1em;
+  font-weight: 600;
+  border-radius: 2rem;
+  cursor: pointer;
+}
 /* END OF CARDS */
 
 /* BOOK FORM */
@@ -189,15 +214,14 @@ input[type="number"] {
 /* END OF BOOK FORM */
 
 .footer {
-    text-align: center;
-    padding: 1em 0;
-    color: var(--color-gray-100);
-    background-color: var(--light-navy);
-      box-shadow: 0 -4px 8px rgb(0, 0, 0, 0.1);
-
+  text-align: center;
+  padding: 1em 0;
+  color: var(--color-gray-100);
+  background-color: var(--light-navy);
+  box-shadow: 0 -4px 8px rgb(0, 0, 0, 0.1);
 }
 
 .footer a {
-    all: unset;
-    cursor: pointer;
+  all: unset;
+  cursor: pointer;
 }
