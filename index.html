@@ -5,40 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Library App</title>
     <link rel="stylesheet" href="style.css" />
-    <!-- <script src="script.js" defer></script> -->
+    <script src="script.js" defer></script>
   </head>
   <body>
     <header class="header">
       <h1 class="title">Library App</h1>
-      <button class="new-book" type="submit"form>Add Book</button>
+      <button class="new-book" type="submit" form="book-form">Add Book</button>
     </header>
     <main class="main-container">
-      <div class="library">
-        <div class="card">Hello friends</div>
+      <div class="library bold">
       </div>
       <form action="#" class="book-form" id="book-form">
         <h1>Enter Book Details</h1>
         <div class="form-group">
           <label for="title" class="bold">Title</label>
-          <input type="text" name="title" id="title" />
+          <input type="text" name="title" id="title" maxlength="40" required />
         </div>
         <div class="form-group">
           <label for="author" class="bold">Author</label>
-          <input type="text" name="author" id="author" />
+          <input type="text" name="author" id="author" maxlength="30" required/>
         </div>
         <div class="form-group">
-          <label for="pages" class="bold" minlength="0">Pages</label>
-          <input type="number" name="pages" id="pages" />
+          <label for="pages" class="bold" >Pages</label>
+          <input type="number" name="pages" id="pages" minlength="0"required/>
         </div>
         <div class="form-group">
           <div class="double-radio">
             <label for="read" class="bold">Completed</label>
-            <input type="radio" name="haveRead" id="read"  checked/>
+            <input type="radio" name="haveRead" id="read"  value="true"checked/>
             <label for="notRead" class="bold">Incomplete</label>
-            <input type="radio" name="haveRead" id="notRead" />
+            <input type="radio" name="haveRead" id="notRead" value="false"/>
           </div>
         </div>
       </form>
     </main>
+    <footer class="footer">
+        <a href="https://github.com/agoth24" target="_blank" rel="noopener noreferrer">Copyright &copy Agoth Arop 2025</a>
+    </footer>
   </body>
 </html>
