@@ -43,56 +43,71 @@ function addBookToLibrary(title, author, pages, haveRead) {
 function displayLibrary() {
   const library = document.querySelector(".library");
   library.textContent = "";
+
   myLibrary.forEach((book) => {
-    const bookCard = document.createElement("div");
-    bookCard.classList.add("card");
-    const cardText = document.createElement("div");
-    cardText.classList.add("card-text");
-
-    const deleteSection = document.createElement("div");
-    deleteSection.classList.add("delete-section");
-
-    const titlePara = document.createElement("p");
-    titlePara.textContent = `Title: ${book.title}`;
-    const authorPara = document.createElement("p");
-    authorPara.textContent = `Author: ${book.author}`;
-    const pagesPara = document.createElement("p");
-    pagesPara.textContent = `Pages: ${book.pages}`;
-    const readPara = document.createElement("p");
-    readPara.textContent = `Completed: ${book.haveRead ? "Yes" : "No"}`;
-
-    const deleteButton = document.createElement("button");
-    deleteButton.classList.add("delete-button");
-    deleteButton.textContent = "Delete";
-
-    const readButton = document.createElement("button");
-    readButton.classList.add("read-button");
-    readButton.textContent = "Change Status";
-
-    cardText.appendChild(titlePara);
-    cardText.appendChild(authorPara);
-    cardText.appendChild(pagesPara);
-    cardText.appendChild(readPara);
-
-    deleteButton.addEventListener("click", () => {
-      deleteBookById(book.id);
-      displayLibrary();
-    });
-
-    readButton.addEventListener("click", () => {
-        book.toggleRead();
-        displayLibrary();
-    })
-    bookCard.appendChild(cardText);
-    bookCard.appendChild(deleteSection);
-
-    deleteSection.appendChild(deleteButton);
-    deleteSection.appendChild(readButton);
+    const bookCard = createBookCard(book);
     library.appendChild(bookCard);
+   
     document.querySelector("#title").focus();
   });
 }
 
+function createBookCard(book) {
+  const bookCard = document.createElement("div");
+  bookCard.classList.add("card");
+
+  const cardText = createCardText(book);
+  const deleteSection = createDeleteSection(book);
+
+  bookCard.appendChild(cardText);
+  bookCard.appendChild(deleteSection);
+
+  return bookCard;
+}
+
+function createCardText(book) {
+  const cardText = document.createElement("div");
+  cardText.classList.add("card-text");
+
+  const titlePara = document.createElement("p");
+  titlePara.textContent = `Title: ${book.title}`;
+
+  const authorPara = document.createElement("p");
+  authorPara.textContent = `Author: ${book.author}`;
+
+  const pagesPara = document.createElement("p");
+  pagesPara.textContent = `Pages: ${book.pages}`;
+
+  const readPara = document.createElement("p");
+  readPara.textContent = `Completed: ${book.haveRead ? "Yes" : "No"}`;
+
+  cardText.append(titlePara, authorPara, pagesPara, readPara);
+  return cardText;
+}
+
+function createDeleteSection(book) {
+  const deleteSection = document.createElement("div");
+  deleteSection.classList.add("delete-section");
+
+  const deleteButton = document.createElement("button");
+  deleteButton.classList.add("delete-button");
+  deleteButton.textContent = "Delete";
+  deleteButton.addEventListener("click", () => {
+    deleteBookById(book.id);
+    displayLibrary();
+  });
+
+  const readButton = document.createElement("button");
+  readButton.classList.add("read-button");
+  readButton.textContent = "Change Status";
+  readButton.addEventListener("click", () => {
+    book.toggleRead();
+    displayLibrary();
+  });
+
+  deleteSection.append(deleteButton, readButton)
+  return deleteSection;
+}
 function deleteBookById(id) {
   const index = myLibrary.findIndex((book) => book.id === id);
   if (index !== -1) {
