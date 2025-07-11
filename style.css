@@ -160,6 +160,7 @@ form {
   display: grid;
   grid-template-columns: 1fr;
   align-self: start;
+  justify-self: center;
 }
 
 .book-form {
