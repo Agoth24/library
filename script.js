@@ -7,7 +7,7 @@ const bookForm = document.querySelector("form.book-form");
 //Listen to the Submit button
 bookForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  
+
   // Create a key:value collection of all form fields and their values
   const formData = new FormData(e.target);
   // Create an object with properties and
@@ -27,17 +27,36 @@ bookForm.addEventListener("submit", (e) => {
   bookForm.reset();
 });
 
-// Book object constructor
-function Book(id, title, author, pages, haveRead) {
-  this.id = id;
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.haveRead = haveRead;
-  this.info = `${title} by ${author}, ${pages} pages, ${
+class Book {
+  constructor(id, title, author, pages, haveRead) {
+    this.id = id;
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.haveRead = haveRead;
+  }
+
+  info() {
+    `${title} by ${author}, ${pages} pages, ${
     haveRead ? "read" : "not read"
-  }.`;
+  }.`
+  }
+  toggleRead() {
+    this.haveRead = !this.haveRead;
+  }
 }
+
+// // Book object constructor
+// function Book(id, title, author, pages, haveRead) {
+//   this.id = id;
+//   this.title = title;
+//   this.author = author;
+//   this.pages = pages;
+//   this.haveRead = haveRead;
+//   this.info = `${title} by ${author}, ${pages} pages, ${
+//     haveRead ? "read" : "not read"
+//   }.`;
+// }
 
 // Create a Book instance and add to library array
 function addBookToLibrary(title, author, pages, haveRead) {
@@ -134,8 +153,8 @@ function deleteBookById(id) {
   }
 }
 
-// Adding a function to the Book prototype for all Books to inherit,
-// change the state of haveRead to its negation
-Book.prototype.toggleRead = function () {
-  this.haveRead = !this.haveRead;
-};
+// // Adding a function to the Book prototype for all Books to inherit,
+// // change the state of haveRead to its negation
+// Book.prototype.toggleRead = function () {
+//   this.haveRead = !this.haveRead;
+// };
