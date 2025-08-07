@@ -6,14 +6,34 @@ const bookForm = document.querySelector("form.book-form");
 
 //Listen to the Submit button
 bookForm.addEventListener("submit", (e) => {
+  // Prevent default form submission immediately
   e.preventDefault();
-
+  
   // Create a key:value collection of all form fields and their values
   const formData = new FormData(e.target);
   // Create an object with properties and
   //  values from the iterable collection above
   const data = Object.fromEntries(formData.entries());
 
+  let hasError = false;
+
+  Array.from(bookForm.elements).forEach((input) => {
+    if (input.tagName !== "INPUT") return;
+
+    input.setCustomValidity("");
+    if (input.validity.valueMissing) {
+      input.setCustomValidity("This field is required.");
+      hasError = true;
+    } else if (input.validity.typeMismatch || input.validity.patternMismatch) {
+      input.setCustomValidity("Your input is invalid");
+      hasError = true;
+    }
+    input.reportValidity()
+  });
+
+  if (hasError) {
+    return;
+  }
   // Pass in data object's values into a function to
   // create book objects and append to the library array.
   addBookToLibrary(
@@ -37,9 +57,7 @@ class Book {
   }
 
   info() {
-    `${title} by ${author}, ${pages} pages, ${
-    haveRead ? "read" : "not read"
-  }.`
+    `${title} by ${author}, ${pages} pages, ${haveRead ? "read" : "not read"}.`;
   }
   toggleRead() {
     this.haveRead = !this.haveRead;
