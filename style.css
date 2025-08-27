@@ -2,8 +2,8 @@ body,
 html {
   box-sizing: border-box;
   margin: 0;
-  font-family: "Courier New", Courier, monospace;
-  height: 100%;
+  font-family: monospace, Courier;
+  min-height: 100vh;
 }
 
 :root {
@@ -32,23 +32,20 @@ body {
   grid-template-rows: auto 1fr auto;
 }
 
-/* .dark-mode {
-    background-color: var(--dark-blue-bg);
-    color: var(--color-gray-300)
-} */
-
 .header {
   display: grid;
   grid-template-columns: 1fr auto;
   justify-content: space-between;
-  padding: 1rem 5rem;
+  padding: 1rem 2rem;
   align-items: center;
   background-color: var(--light-navy);
   box-shadow: 0 4px 8px rgb(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
 }
 
 h1.title {
-  font-size: 2.25rem;
+  font-size: 1.5rem;
   margin: 0;
   text-shadow: 0 6px 10px rgb(255, 255, 255, 0.1);
 }
@@ -57,9 +54,9 @@ button.new-book {
   all: unset;
   background-color: var(--custom-orange);
   color: var(--color-gray-100);
-  border-radius: 2rem;
-  padding: 1rem 3rem;
-  font-size: 1.25rem;
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
+  font-size: 1rem;
   font-weight: 700;
   transition: 0.2s ease;
 }
@@ -75,7 +72,7 @@ button.read-button:hover {
 
 .main-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
   padding: 3rem;
   gap: 3rem;
 }
@@ -84,11 +81,9 @@ button.read-button:hover {
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
-  grid-column: 1;
-  grid-row: 1/-1;
   gap: 2rem;
   transition: all 0.3s ease;
-  font-size: 1.25rem;
+  font-size: 1rem;
   /* place-items: center; */
 }
 
@@ -110,10 +105,6 @@ button.read-button:hover {
   border-radius: 1rem;
 }
 
-.bold {
-  font-weight: 600;
-  font-size: 1.125rem;
-}
 .card-text {
   display: flex;
   flex-direction: column;
@@ -156,24 +147,23 @@ button.read-button:hover {
 /* BOOK FORM */
 
 form {
-  width: max-content;
+  max-width: 600px;
   display: grid;
   grid-template-columns: 1fr;
   align-self: start;
-  justify-self: center;
 }
 
 .book-form {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem 3rem;
-  grid-column: 2;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem 2rem;
+  justify-self: center;
   background-color: var(--light-navy);
-  padding: 3rem 2rem;
+  padding: 2rem;
   border-radius: 1rem;
   box-shadow: 0 4px 8px rgb(255, 255, 255, 0.1);
 }
-@media (max-width: 800px) {
+@media (max-width: 640px) {
   .book-form {
     grid-template-columns: 1fr;
   }
@@ -184,7 +174,7 @@ form {
 
 .form-group {
   display: grid;
-  gap: 01cap;
+  gap: 1cap;
 }
 
 .book-form h1 {
@@ -197,13 +187,15 @@ label {
 }
 .form-group input[type="text"],
 input[type="number"] {
-  all: unset;
+  border-color: transparent;
+  accent-color: var(--custom-orange);
   background-color: var(--color-gray-800);
-  height: 2.5rem;
+  min-height: 2.5rem;
   border-radius: 1rem;
   padding: 0 1rem;
   border: 1px solid var(--dark-blue-bg);
   box-shadow: 0 4px 8px rgb(0, 0, 0, 0.1);
+  color: var(--color-gray-100);
 }
 
 .double-radio {
