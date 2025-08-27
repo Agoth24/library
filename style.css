@@ -82,9 +82,7 @@ button.read-button:hover {
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
   gap: 2rem;
-  transition: all 0.3s ease;
   font-size: 1rem;
-  /* place-items: center; */
 }
 
 /* CARDS */
@@ -96,13 +94,12 @@ button.read-button:hover {
   border-radius: 0 1rem 1rem 0;
   padding: 1rem;
   border-left: 1rem solid var(--custom-orange);
-  transition: all 0.2s ease;
+  transition: box-shadow 0.2s ease;
   align-self: start;
  
 }
 .card:hover {
   box-shadow: 0 4px 8px rgb(255, 255, 255, 0.1);
-  border-radius: 1rem;
 }
 
 .card-text {
@@ -128,7 +125,7 @@ button.read-button:hover {
   color: white;
   font-size: 1em;
   font-weight: 600;
-  border-radius: 2rem;
+  border-radius: 1rem;
   cursor: pointer;
 }
 
@@ -147,7 +144,7 @@ button.read-button:hover {
 /* BOOK FORM */
 
 form {
-  max-width: 600px;
+  max-width: 700px;
   display: grid;
   grid-template-columns: 1fr;
   align-self: start;
@@ -155,7 +152,7 @@ form {
 
 .book-form {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1rem 2rem;
   justify-self: center;
   background-color: var(--light-navy);

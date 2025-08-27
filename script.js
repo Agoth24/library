@@ -8,7 +8,7 @@ const bookForm = document.querySelector("form.book-form");
 bookForm.addEventListener("submit", (e) => {
   // Prevent default form submission immediately
   e.preventDefault();
-  
+
   // Create a key:value collection of all form fields and their values
   const formData = new FormData(e.target);
   // Create an object with properties and
@@ -28,7 +28,7 @@ bookForm.addEventListener("submit", (e) => {
       input.setCustomValidity("Your input is invalid");
       hasError = true;
     }
-    input.reportValidity()
+    input.reportValidity();
   });
 
   if (hasError) {
@@ -152,7 +152,8 @@ function createDeleteSection(book) {
 
   const readButton = document.createElement("button");
   readButton.classList.add("read-button");
-  readButton.textContent = "Change Status";
+  readButton.textContent = "Change";
+  readButton.ariaLabel = "Change Status";
   readButton.addEventListener("click", () => {
     book.toggleRead();
     displayLibrary();
